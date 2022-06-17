@@ -6,7 +6,15 @@ description: Still Unchecked.
 
 ## 容器的沿革发展
 
-[https://www.infoq.cn/article/ss6sitklgolexqp4umr5](https://www.infoq.cn/article/ss6sitklgolexqp4umr5)
+{% embed url="https://www.infoq.cn/article/ss6sitklgolexqp4umr5" %}
+
+虚拟化容器技术最早可以追溯到上世纪70年代末。随着硬件的发展和需求的变化，容器化技术也在不断演进和革新。
+
+### chroot：最早的容器化思想
+
+chroot最早出现在Unix V7中。当时的系统开发十分复杂，因此急需一个**高效稳定可重建**的测试环境，因为程序编译调试之后，测试环境就被“污染”了，下一次构建测试需要重新安装和配置环境。而以当时的计算资源，不断新建和销毁测试环境十分困难。
+
+于是chroot应运而生。该功能为每个进程提供一个独立的磁盘空间，将一个进程及其子进程的根目录改变到文件系统中的新位置，让这些进程只能访问到该目录。这可以粗略理解为将机器的根目录切换到当前目录上（所以叫chroot）。这个被隔离出来的新环境被叫做 Chroot Jail。这标志着进程隔离的开始，隔离每个进程的文件访问权限。
 
 源起：属于 Jails 们的时代 虚拟化容器技术（virtualized container）的历史，其实可以一直追溯上世纪 70 年代末。时间回到 1979 年，贝尔实验室（ Bell Laboratories 正在为 Unix V7 （Version 7 Unix）操作系统的发布进行最后的开发和测试工作。
 
