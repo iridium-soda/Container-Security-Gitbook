@@ -18,7 +18,7 @@ chroot最早出现在Unix V7中。当时的系统开发十分复杂，因此急�
 
 2000年发布的FreeBSD系统附带了FreeBSD Jail组件作为系统管理员用来增强FreeBSD系统安全性的工具。该组件扩展了chroot的概念和作用范围，创建了一个独立于系统其余部分的安全环境。在jail内的应用程序不能访问外部的文件资源，从而实现了隔离，破坏在jail中运行的服务不会损害整个系统。Jails 通过虚拟化对文件系统、用户和网络子系统的访问，改进了chroot技术。
 
-![FreeBSD Jail的logo](<../.gitbook/assets/freeBSD Jail>)
+![FreeBSD Jail的logo](<.gitbook/assets/freeBSD Jail.png>)
 
 ### LinuxVServer的隔离机制
 
@@ -46,11 +46,41 @@ Docker是容器技术的一次飞跃，通过对容器进一步的封装和文�
 
 Kubernetes最初是Google的内部项目。在经过用Go语言重写并且优化后，被正式命名为Kubernetes并于2014年开源。该应用致力于高效便捷地管理数以万计的物理机器。由于Google的业界声望，该应用开源之初就人气颇高，大量互联网厂家都加入了社区贡献者的行列。在经历两年多的市场争夺后，Kubernetes 凭借各厂商全力支持以及 77%的市场份额获得全面胜利，成为容器编排领域的事实标准。
 
-\
+## 容器引擎的基本层次结构-以Docker为例
 
+### 什么是Docker引擎
+
+**Docker 引擎是用来运行和管理容器的核心软件，用于部署、运行、管理容器**。为了响应开放容器计划标准（OCI）的要求，Docker引擎采用模块化的设计思想，其组件都可以替换。因此Docker引擎是模块化的。
+
+### Docker引擎的组成
+
+Docker 是典型的客户端-服务器架构，由如下主要的组件构成：Docker 客户端（Docker Client）、Docker 守护进程（Docker daemon）、containerd 以及 runc。它们分层次共同负责容器的创建和运行。
+
+* Docker客户端：用户和容器引擎交互的载体，用于接收和处理输入的命令或者脚本，可以理解为Windows的cmd、webshell或者Liunx的Bash。
+* API：命令解析完成后，Docker客户端调用相关的API，由API和引擎内部进行交互。
+* 守护进程（daemon）：守护进程一直运行在后台，监听API发出的请求并管理容器、镜像等对象。守护进程还可以与其他守护进程通信，以管理跨物理机的Docker服务。
+* 运行时（Runtime）和RunC：运行时是程序运行的地方，是Docker引擎的最底层。因此运行时程序需要结合系统内核为容器的运行和调度提供环境。RunC是目前Docker选用的运行时程序。
+* Containerd：Containerd的层次在运行时之上，该模块负责容器的运行时和生命周期管理,而**不包含**镜像管理,卷挂载,日志等功能.
+
+### Docker引擎的层次结构和基本运行流程
+
+![Docker的基本结构](.gitbook/assets/Docker架构图.png)
+
+Docker新建容器的基本流程如下：
+
+1. 用户或者脚本通过Client输入指令。
+2. Client解析指令并将解析后的请求传给API。
+3. Deamon持续监听API，接收到API的请求。
+4. 检查本地镜像库：如果没有相应镜像，从远程镜像库拉取对应版本的镜像。
+5. 将镜像传给Containerd，验证后解压为Bundle。
+6. Containerd调用RunC运行Bundle。
 
 ## 扩展阅读
 
 {% embed url="https://www.infoq.cn/article/r1p3h3_29f4tyimexsyw" %}
+
+{% embed url="https://www.51cto.com/article/687502.html" %}
+
+{% embed url="https://docs.docker.com/" %}
 
 {% embed url="https://kubernetes.io/docs/home/" %}
