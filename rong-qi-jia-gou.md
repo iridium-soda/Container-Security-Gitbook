@@ -60,20 +60,20 @@ Docker 是典型的客户端-服务器架构，由如下主要的组件构成：
 * API：命令解析完成后，Docker客户端调用相关的API，由API和引擎内部进行交互。
 * 守护进程（daemon）：守护进程一直运行在后台，监听API发出的请求并管理容器、镜像等对象。守护进程还可以与其他守护进程通信，以管理跨物理机的Docker服务。
 * 运行时（Runtime）和RunC：运行时是程序运行的地方，是Docker引擎的最底层。因此运行时程序需要结合系统内核为容器的运行和调度提供环境。RunC是目前Docker选用的运行时程序。
-* Containerd：Containerd的层次在运行时之上，该模块负责容器的运行时和生命周期管理,而**不包含**镜像管理,卷挂载,日志等功能.
+* Containerd：Containerd是一种层次较高的容器运行时，该模块负责底层容器运行时和容器生命周期的管理,而**不包含**镜像管理,卷挂载,日志等功能.
 
 ### Docker引擎的层次结构和基本运行流程
 
-![Docker的基本结构](.gitbook/assets/Docker架构图.png)
-
 Docker新建容器的基本流程如下：
+
+![创建一个容器的过程](.gitbook/assets/Docker架构图.png)
 
 1. 用户或者脚本通过Client输入指令。
 2. Client解析指令并将解析后的请求传给API。
 3. Deamon持续监听API，接收到API的请求。
 4. 检查本地镜像库：如果没有相应镜像，从远程镜像库拉取对应版本的镜像。
 5. 将镜像传给Containerd，验证后解压为Bundle。
-6. Containerd调用RunC运行Bundle。
+6. Containerd调用RunC运行Bundle开始运行。
 
 ## 扩展阅读
 
@@ -81,6 +81,8 @@ Docker新建容器的基本流程如下：
 
 {% embed url="https://www.51cto.com/article/687502.html" %}
 
-{% embed url="https://docs.docker.com/" %}
+{% embed url="https://www.qikqiak.com/post/containerd-usage" %}
 
 {% embed url="https://kubernetes.io/docs/home/" %}
+
+{% embed url="https://docs.docker.com/get-started/overview/" %}
