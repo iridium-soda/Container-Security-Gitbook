@@ -103,7 +103,7 @@ Docker 是典型的客户端-服务器架构，由如下主要的组件构成：
 
 仓库是一种对于镜像的集中存储、分发服务。用户可以在一处上传镜像，在任何地方拉去镜像。通常为了保证镜像的迭代和持续交付，一个仓库会包含一个镜像的所有可用历史版本；而这些版本以tag区别。默认地，如果不指定tag，则拉去最新版本的镜像。Docker最常用的仓库是DockerHub，而Github也有类似的功能。
 
-### Docker的基本运行流程
+### Docker的基本创建流程
 
 Docker新建容器的基本流程如下：
 
@@ -116,9 +116,21 @@ Docker新建容器的基本流程如下：
 5. 将镜像传给Containerd，验证后解压为Bundle。
 6. Containerd调用RunC运行Bundle开始运行。
 
-### Docker的生命周期
+### 容器的生命周期
 
-&#x20;          &#x20;
+Docker规定了容器的7种状态，这些状态显示在容器信息的\`STATUS\`字段，共同构成了容器从创建到销毁的全部生命周期。这七种状态为：
+
+1. created（已创建） ：容器已经创建但没有启动。
+2. restarting（重启中） ：正在重启过程中的容器。
+3. running（运行中） ：已经启动，正在运行的容器。
+4. removing（迁移中） ：容器正在执行迁移程序。
+5. paused（暂停） ：容器的运行被暂停，但没有关闭。
+6. exited（停止）：容器被关闭，但可以重新启动。
+7. dead（死亡）：容器所有资源已经释放，容器被销毁。
+
+&#x20;其中比较常见的是除了removing和restarting的其他状态。这些状态之间的转换如下图所示：
+
+![](<.gitbook/assets/Docker Status.png>)
 
 ## Docker的运行实例
 
@@ -131,6 +143,8 @@ Docker新建容器的基本流程如下：
 {% embed url="https://www.51cto.com/article/687502.html" %}
 
 {% embed url="https://www.qikqiak.com/post/containerd-usage" %}
+
+{% embed url="https://dev.to/dhanushkadev/introduction-to-the-docker-life-cycle-4e6j" %}
 
 {% embed url="https://kubernetes.io/docs/home/" %}
 
