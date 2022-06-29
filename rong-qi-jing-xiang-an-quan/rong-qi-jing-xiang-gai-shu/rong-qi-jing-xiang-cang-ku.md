@@ -1,5 +1,7 @@
 # 容器镜像仓库
 
-## 什么是仓库
+之前在容器的三大运行概念章节提到了容器镜像仓库的概念。容器镜像仓库是一种存储库，用于存储基于容器的应用开发的容器镜像。
 
-[https://yeasy.gitbook.io/docker\_practice/basic\_concept/repository](https://yeasy.gitbook.io/docker\_practice/basic\_concept/repository)
+## 镜像仓库、镜像仓库服务器
+
+仓库是集中存储和分发镜像的地方，一般被称作Repository。而镜像仓库服务器（Registry）是运行仓库的平台。比较常用的就是Registry有Docker Hub，即Docker官方提供的镜像托管分发平台。同样，还可以根据自身需要部署不公开的、有访问权限控制的私有镜像仓库服务器。
