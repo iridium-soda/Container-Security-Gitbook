@@ -1,5 +1,13 @@
 # 容器镜像与Dockerfile
 
+## 镜像的加载原理
+
+{% embed url="https://cloud.tencent.com/developer/article/1733928" %}
+
+{% embed url="https://cloud.tencent.com/developer/article/1681523?from=article.detail.1733928" %}
+
+
+
 ## DockerFile：镜像的构建方式
 
 上一章我们提到，镜像的构建是分层的，即在Base layer上一层层添加镜像，上层的镜像依赖于下层的镜像。这样可以避免大量的重复工作。
