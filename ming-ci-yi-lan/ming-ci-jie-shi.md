@@ -2,7 +2,11 @@
 
 这里集中存放相关名词的解释。以首字母为标准分类和排序。
 
+Agile software development
+
 Bundle：是镜像用于运行的形态。镜像由容器运行时解压为Bundle交由运行时运行。OCI同样规范了Bundle的格式。
+
+CI/CD
 
 Containerization：容器化，是一种应用程序级别的虚拟化。允许在单个操作系统内核上同时运行多个独立的用户实例。
 
@@ -11,6 +15,8 @@ Container：容器，**容器**提供了将应用程序的代码、运行时、�
 Container Orchestration：容器编排软件，是一种支持容器自动化部署和组织的应用程序。一些流行的开源容器编排工具包括Kubernetes、Docker Swarm和LXC。
 
 Containerd：containerd是一种符合OCI标准的容器运行时实现。其主要功能有：管理容器的生命周期、拉取/推送容器镜像、管理镜像及容器数据的存储、与runc等容器运行时交互和管理容器网络接口及网络等。相比于RunC，containerd是层次比较高的容器运行时。
+
+Devops
 
 Docker CLI：用户和容器引擎交互的载体，用于接收和处理输入的命令或者脚本，可以理解为Windows的cmd、webshell或者Liunx的Bash。&#x20;
 
@@ -28,7 +34,7 @@ RunC：RunC是底层运行时的一种实现，受Containerd的管理，负责�
 
 Volume：卷。容器中的磁盘文件是临时的，这给在容器中运行的重要应用程序带来了一些问题。容器崩溃或者被销毁时，这些数据都会被清除，而新容器将会以clean的状态创建。卷就是为了解决这种问题。一般的卷即为一个物理机的目录。这个目录将会被“挂载”到容器内，即进行容器内目录和物理机上目录的映射，以进行容器内文件的持久化存储。根据生命周期特点，可分为持久卷和临时卷等。
 
-
+Waterfall Model
 
 
 
