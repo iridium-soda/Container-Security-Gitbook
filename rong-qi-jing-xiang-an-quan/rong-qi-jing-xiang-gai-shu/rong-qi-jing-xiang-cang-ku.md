@@ -12,7 +12,17 @@
 
 同样，还可以根据自身需要部署不公开的、有访问权限控制的私有镜像仓库服务器。Docker registry项目同样提供了开源的管理架构供配置使用，不包含一些高级功能，比如可视化管理，访问权限管理等，但足以满足常规的镜像拉取和管理需求。
 
-### 镜像仓库的原理
+### 镜像仓库的工作原理
+
+镜像仓库主要功能是向主机发送镜像（pull）和接收存储主机提交的镜像（push）。下面将会介绍主机和镜像仓库联系过程中的三种角色，和pull、push阶段分别发生了什么。
+
+#### 镜像仓库的三个角色
+
+在使用镜像仓库的过程中会涉及三个角色：Registry Client（仓库客户端）、Docker Index（Index服务）与Registry（Docker仓库）。
+
+* Registry Client：一般由Docker本身承担。用于发出pull或者push指令，并通过index间接向registry发出指令。
+* Docker Index：作为Client和registry的中介，接收client的请求，并且提供镜像索引和鉴权功能。此外，该部件还要校验推送镜像的完整性。
+* Registry：存放镜像和相关信息的仓库。注意该部件并没有用户鉴权的功能，而是通过index发放的token对用户鉴权。
 
 {% embed url="https://blog.csdn.net/weixin_43238194/article/details/105026340" %}
 
